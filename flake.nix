@@ -1,7 +1,13 @@
 {
   description = "CLI clock display in nixie tubes";
 
-  inputs.utils.url = "github:NewDawn0/nixUtils";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    utils = {
+      url = "github:NewDawn0/nixUtils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   outputs = { self, utils, ... }: {
     overlays.default = final: prev: {
